@@ -5,4 +5,7 @@
 db_volume/
 
 .DS_STORE
+.env
 .idea
+
+cloud-sql-proxy

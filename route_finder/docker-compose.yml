@@ -1,18 +1,13 @@
 version: '3'
 
 services:
-  db:
-    image: postgres:16
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=route_finder
+  server:
+    build:
+      context: ./server
+    env_file:
+      - ./server/.env
     ports:
-      - "5432:5432"
+      - ${HOST_PORT}:${CONTAINER_PORT}
     volumes:
-      - ./db_volume:/var/lib/postgresql/data
-      - ./data:/data
-
-volumes:
-  db_volume:
+      - ./server/src:/app/src
+      - ./server/requirements.txt:/app/requirements.txt
